@@ -1,9 +1,14 @@
 import { Router } from "express";
 import  knex from "../database/db";
 
+import { authentication } from "../middleware/authentication";
+// import { unitsRoutes } from "./unitsRoutes";
+
 const router = Router();
 
-//router.use('/')
+router.use(authentication)
+
+// router.use('/api/v1', unitsRoutes);
 
 router.get('/units', async (req, res) => {
     const result = await knex.raw(`
